@@ -1,0 +1,54 @@
+# Ubicación: .github/workflows/ci.yml
+
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+
+jobs:
+  lint-and-test:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Configurar Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+          cache: 'npm'
+      
+      - name: Instalar dependencias
+        run: npm ci
+      
+      - name: Construir paquete shared
+        run: cd packages/shared && npm run build
+      
+      - name: Lint backend
+        run: cd packages/backend && npm run lint
+      
+      - name: Test backend
+        run: cd packages/backend && npm test
+
+  build-backend:
+    needs: lint-and-test
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/develop'
+    
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Configurar Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+          cache: 'npm'
+      
+      - name: Instalar dependencias
+        run: cd packages/backend && npm ci
+      
+      - name: Construir backend
+        run: cd packages/backend && npm run build

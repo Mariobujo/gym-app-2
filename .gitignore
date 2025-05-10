@@ -1,0 +1,51 @@
+# Crear archivo .gitignore en la raíz del proyecto
+cat > .gitignore << 'EOF'
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# Build outputs
+dist/
+build/
+coverage/
+out/
+web-build/
+
+# IDE and editors
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+*.iml
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# React Native specific
+android/app/debug
+android/app/release
+ios/Pods/
+.expo/
+ios/.xcode.env.local
+
+# Temporary files
+.tmp/
+tmp/
+*.orig.*
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+EOF

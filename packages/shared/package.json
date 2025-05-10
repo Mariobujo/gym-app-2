@@ -1,0 +1,17 @@
+{
+  "name": "@gym-app/shared",
+  "version": "0.1.0",
+  "private": true,
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc -w",
+    "lint": "eslint . --ext .ts"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "typescript": "^4.9.4",
+    "eslint": "^8.30.0"
+  }
+}
