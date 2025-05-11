@@ -4,7 +4,7 @@
  * @param heightCm - Height in centimeters
  * @returns BMI value
  */
-export const calculateBMI = (weightKg: number, heightCm: number): number => {
+  export const calculateBMI = (weightKg: number, heightCm: number): number => {
     // Convert height to meters
     const heightM = heightCm / 100;
     // BMI formula: weight (kg) / height^2 (m)
